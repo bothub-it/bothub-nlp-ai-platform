@@ -92,8 +92,4 @@ RUN if [ ${DOWNLOAD_SPACY_MODELS} ]; then \
     python3.6 download_spacy_models.py ${DOWNLOAD_SPACY_MODELS}; \
 fi
 
-ARG REPOSITORY_VERSION
-ARG BY_ID
-ARG REPOSITORY_AUTHORIZATION
-
-ENTRYPOINT ["python3.6", "bothub_nlp_ai_platform/trainer/train.py", "--repository-version", "repository_version","--by-id", "by_id", "--repository-authorization", "repository_authorization"]
+ENTRYPOINT ["python3.6", "bothub_nlp_ai_platform/trainer/train.py"]
