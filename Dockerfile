@@ -79,12 +79,12 @@ COPY . .
 RUN git clone --branch master --depth 1 --single-branch \
     https://github.com/Ilhasoft/spacy-lang-models \
     spacy-langs \
-    && python3.6 scripts/link_lang_spacy.py pt_br ./spacy-langs/pt_br/ \
-    && python3.6 scripts/link_lang_spacy.py mn ./spacy-langs/mn/ \
-    && python3.6 scripts/link_lang_spacy.py ha ./spacy-langs/ha/ \
-    && python3.6 scripts/link_lang_spacy.py ka ./spacy-langs/ka/ \
-    && python3.6 scripts/link_lang_spacy.py kk ./spacy-langs/kk/ \
-    && python3.6 scripts/link_lang_spacy.py sw ./spacy-langs/sw/
+    && python3.6 bothub_nlp_ai_platform/link_lang_spacy.py pt_br ./spacy-langs/pt_br/ \
+    && python3.6 bothub_nlp_ai_platform/link_lang_spacy.py mn ./spacy-langs/mn/ \
+    && python3.6 bothub_nlp_ai_platform/link_lang_spacy.py ha ./spacy-langs/ha/ \
+    && python3.6 bothub_nlp_ai_platform/link_lang_spacy.py ka ./spacy-langs/ka/ \
+    && python3.6 bothub_nlp_ai_platform/link_lang_spacy.py kk ./spacy-langs/kk/ \
+    && python3.6 bothub_nlp_ai_platform/link_lang_spacy.py sw ./spacy-langs/sw/
 
 ARG DOWNLOAD_SPACY_MODELS
 
