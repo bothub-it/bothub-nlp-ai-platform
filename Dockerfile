@@ -92,4 +92,4 @@ RUN if [ ${DOWNLOAD_SPACY_MODELS} ]; then \
     python3.6 download_spacy_models.py ${DOWNLOAD_SPACY_MODELS}; \
 fi
 
-#ENTRYPOINT ["python3.6", "bothub_nlp_ai_platform/train.py"]
+ENTRYPOINT ["python3.6", "bothub_nlp_ai_platform/train.py"]
