@@ -1,7 +1,7 @@
 import argparse
 import os
 
-from bothub_nlp_rasa_utils.train import train_update as train
+from bothub_nlp_rasa_utils.train import train
 
 
 if __name__ == '__main__':
@@ -14,8 +14,7 @@ if __name__ == '__main__':
         type=int)
     PARSER.add_argument(
         '--by-id',
-        help='.',
-        type=int)
+        help='.')
     PARSER.add_argument(
         '--repository-authorization',
         help='Repository authorization string.')
