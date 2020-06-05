@@ -4,3 +4,4 @@ git+https://github.com/bothub-it/bothub-backend.git@1.0.9
 git+https://github.com/bothub-it/bothub-nlp-rasa-utils.git
 plac==0.9.6
 spacy==2.1.9
+Unidecode==1.1.1
