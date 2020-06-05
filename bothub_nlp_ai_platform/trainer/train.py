@@ -1,7 +1,7 @@
 import argparse
 import os
 
-from bothub_nlp_rasa_utils.train import train
+from bothub_nlp_rasa_utils.train import train_update as train
 
 
 if __name__ == '__main__':
