@@ -1,11 +1,11 @@
-FROM tensorflow/tensorflow:2.1.1-gpu as base
+FROM tensorflow/tensorflow:2.2.0-gpu as base
 ENV LC_ALL C.UTF-8
 ENV LANG C.UTF-8
 
 WORKDIR /home/root/app
 
 RUN apt-get update && apt-get install --no-install-recommends -y software-properties-common curl git
-RUN apt-get install -y python3 python3-pip
+# RUN apt-get install -y python3 python3-pip
 RUN apt-get install -y build-essential
 
 RUN echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections
