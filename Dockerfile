@@ -1,11 +1,11 @@
-FROM tensorflow/tensorflow:2.2.0-gpu as base
+FROM nvidia/cuda:10.2-cudnn7-runtime-ubuntu18.04 as base
 ENV LC_ALL C.UTF-8
 ENV LANG C.UTF-8
 
 WORKDIR /home/root/app
 
 RUN apt-get update && apt-get install --no-install-recommends -y software-properties-common curl git
-# RUN apt-get install -y python3 python3-pip
+RUN apt-get install -y python3 python3-pip
 RUN apt-get install -y build-essential
 
 RUN echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections
@@ -34,8 +34,7 @@ RUN pip3 install --find-links=/wheels -r requirements.txt
 
 COPY . .
 
-# ENV LD_LIBRARY_PATH /usr/local/cuda/lib64
-# RUN ls /usr/local/cuda/lib64
+# RUN export LD_LIBRARY_PATH=/usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATH
 
 RUN git clone --branch master --depth 1 --single-branch \
     https://github.com/Ilhasoft/spacy-lang-models \
