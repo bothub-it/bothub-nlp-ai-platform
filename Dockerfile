@@ -34,6 +34,9 @@ RUN pip3 install --find-links=/wheels -r requirements.txt
 
 COPY . .
 
+ENV LD_LIBRARY_PATH /usr/local/cuda/extras/CUPTI/lib64
+RUN ls /usr/local/cuda/extras/CUPTI/lib64
+
 RUN git clone --branch master --depth 1 --single-branch \
     https://github.com/Ilhasoft/spacy-lang-models \
     spacy-langs \
