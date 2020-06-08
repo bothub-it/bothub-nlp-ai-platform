@@ -5,3 +5,4 @@ git+https://github.com/bothub-it/bothub-nlp-rasa-utils.git
 plac==0.9.6
 spacy==2.1.9
 Unidecode==1.1.1
+urllib3==1.24.3
