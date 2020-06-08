@@ -1,4 +1,4 @@
-FROM nvidia/cuda:10.1-cudnn7-runtime-ubuntu18.04 as base
+FROM tensorflow/tensorflow:2.1.1-gpu as base
 ENV LC_ALL C.UTF-8
 ENV LANG C.UTF-8
 
@@ -33,8 +33,6 @@ RUN pip3 install --upgrade pip setuptools
 RUN pip3 install --find-links=/wheels -r requirements.txt
 
 COPY . .
-
-RUN export LD_LIBRARY_PATH=/usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATH
 
 RUN git clone --branch master --depth 1 --single-branch \
     https://github.com/Ilhasoft/spacy-lang-models \
