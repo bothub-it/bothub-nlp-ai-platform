@@ -116,5 +116,4 @@ RUN if [ ${DOWNLOAD_SPACY_MODELS} ]; then \
     python3.6 download_spacy_models.py ${DOWNLOAD_SPACY_MODELS}; \
 fi
 
-CMD ["/bin/bash"]
-#ENTRYPOINT ["python3.6", "bothub_nlp_ai_platform/trainer/train.py"]
+ENTRYPOINT ["python3.6", "bothub_nlp_ai_platform/trainer/train.py"]
