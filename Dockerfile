@@ -29,6 +29,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         cuda-cusolver-${CUDA/./-} \
         cuda-cusparse-${CUDA/./-} \
         curl \
+        git \
+        wget \
         libcudnn7=${CUDNN}+cuda${CUDA} \
         libfreetype6-dev \
         libhdf5-serial-dev \
