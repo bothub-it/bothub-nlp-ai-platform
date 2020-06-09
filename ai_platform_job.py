@@ -4,18 +4,29 @@ from googleapiclient import errors
 import logging
 
 training_inputs = {
-    'scaleTier': 'BASIC',
+    'scaleTier': 'CUSTOM',
+    'masterType': 'standard_p100',
+    # 'workerType': 'standard_v100',
+    # 'workerCount': 3,
+    # 'parameterServerType': 'n1-highmem-8',
+    # 'evaluatorType': 'n1-highcpu-16',
+
+    # 'parameterServerCount': 3,
+    # 'evaluatorCount': 1,
+
     'masterConfig': {
-          "imageUri": 'gcr.io/bothub-273521/quickstart-image@sha256:f532b87cbb1c5db47586cff35a4afdfc3fefc23c3b8ad3174ef7688b3c503e8e',
+        "imageUri": 'us.gcr.io/bothub-273521/bothub-nlp-ai-platform:1.0.15',
     },
-    'packageUris': ['gs://poc-training-ai-platform/job-dir/packages/82add65c49cb4a75897aec4b3832299824e68d494a47be7599d4904bace93912/ai-platform-poc-0.1.tar.gz'],
-    'pythonModule': 'trainer.task',
-    'args': ['--repository-version', 'sdasfwet', '--by-id', 'sapdjasoidjoa', '--repository-authorization', 'POIJSDOAISDJAS'],
+    'packageUris': [
+        'gs://poc-training-ai-platform/bothub-nlp-ai-platform/bothub-nlp-ai-platform-0.1.tar.gz'
+    ],
+    'pythonModule': 'trainer.train',
+    'args': ['--repository-version', '20072', '--by-id', '298', '--repository-authorization', '9b72d9ab-90b1-47a6-9225-bb8c33d9f071'],
     'region': 'us-east1',
     'jobDir': 'gs://poc-training-ai-platform/job-dir',
 }
 
-job_spec = {'jobId': 'my_training_job_3', 'trainingInput': training_inputs}
+job_spec = {'jobId': 'bothub_train_daniel_15', 'trainingInput': training_inputs}
 
 # Salve o ID do projeto no formato necessário para as APIs, "projects/projectname":
 project_name = 'bothub-273521'
