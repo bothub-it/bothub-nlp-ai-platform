@@ -57,6 +57,7 @@ RUN ln -s /usr/local/cuda/lib64/stubs/libcuda.so /usr/local/cuda/lib64/stubs/lib
 
 # See http://bugs.python.org/issue19846
 ENV LANG C.UTF-8
+ENV LC_ALL C.UTF-8
 
 RUN apt-get update && apt-get install -y \
     python3 \
@@ -68,9 +69,6 @@ RUN python3 -m pip --no-cache-dir install --upgrade \
 
 # Some TF tools expect a "python" binary
 RUN ln -s $(which python3) /usr/local/bin/python
-
-ENV LC_ALL C.UTF-8
-ENV LANG C.UTF-8
 
 WORKDIR /home/root/app
 
@@ -84,24 +82,18 @@ COPY requirements.txt .
 
 FROM base as builder
 
-RUN apt-get update && apt-get install --no-install-recommends -y build-essential
-
-RUN pip3 install --upgrade pip setuptools
-
 RUN pip3 wheel --wheel-dir=/wheels -r requirements.txt
 
 FROM base
 
 COPY --from=builder /wheels /wheels
 
-RUN pip3 install --upgrade pip setuptools
-
 RUN pip3 install --find-links=/wheels -r requirements.txt
 
 COPY . .
 
 RUN git clone --branch master --depth 1 --single-branch \
-    https://github.com/Ilhasoft/spacy-lang-models \
+    https://github.com/bothub-it/spacy-lang-models \
     spacy-langs \
     && python3.6 link_lang_spacy.py pt_br ./spacy-langs/pt_br/ \
     && python3.6 link_lang_spacy.py mn ./spacy-langs/mn/ \
