@@ -1,6 +1,4 @@
 import argparse
-import os
-
 from bothub_nlp_rasa_utils.train import train_update as train
 
 
