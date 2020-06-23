@@ -22,4 +22,4 @@ if __name__ == '__main__':
 
     ARGUMENTS, _ = PARSER.parse_known_args()
     # Run the training job
-    train(ARGUMENTS.repository_version, ARGUMENTS.by_id, ARGUMENTS.repository_authorization)
+    train(ARGUMENTS.repository_version, ARGUMENTS.by_id, ARGUMENTS.repository_authorization, from_queue='ai-platform')
