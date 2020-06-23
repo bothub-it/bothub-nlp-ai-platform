@@ -1,7 +1,5 @@
 import argparse
-import os
-
-from bothub_nlp_rasa_utils.train import train
+from bothub_nlp_rasa_utils.train import train_update as train
 
 
 if __name__ == '__main__':
@@ -14,11 +12,12 @@ if __name__ == '__main__':
         type=int)
     PARSER.add_argument(
         '--by-id',
-        help='.')
+        help='.',
+        type=int)
     PARSER.add_argument(
         '--repository-authorization',
         help='Repository authorization string.')
 
     ARGUMENTS, _ = PARSER.parse_known_args()
     # Run the training job
-    train(ARGUMENTS.repository_version, ARGUMENTS.by_id, ARGUMENTS.repository_authorization)
+    train(ARGUMENTS.repository_version, ARGUMENTS.by_id, ARGUMENTS.repository_authorization, from_queue='ai-platform')
