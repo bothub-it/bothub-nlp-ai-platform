@@ -90,6 +90,9 @@ COPY --from=builder /wheels /wheels
 
 RUN pip3 install --find-links=/wheels -r requirements.txt
 
+#Install torch with cuda 10.1
+RUN pip3 install torch==1.5.1+cu101 torchvision==0.6.1+cu101 -f https://download.pytorch.org/whl/torch_stable.html
+
 COPY . .
 
 #RUN git clone --branch master --depth 1 --single-branch \
