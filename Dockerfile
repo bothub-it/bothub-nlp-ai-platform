@@ -92,26 +92,26 @@ RUN pip3 install --find-links=/wheels -r requirements.txt
 
 COPY . .
 
-RUN git clone --branch master --depth 1 --single-branch \
-    https://github.com/bothub-it/spacy-lang-models \
-    spacy-langs \
-    && python3.6 link_lang_spacy.py pt_br ./spacy-langs/pt_br/ \
-    && python3.6 link_lang_spacy.py mn ./spacy-langs/mn/ \
-    && python3.6 link_lang_spacy.py ha ./spacy-langs/ha/ \
-    && python3.6 link_lang_spacy.py ka ./spacy-langs/ka/ \
-    && python3.6 link_lang_spacy.py kk ./spacy-langs/kk/ \
-    && python3.6 link_lang_spacy.py sw ./spacy-langs/sw/ \
-    && python3.6 link_lang_spacy.py az ./spacy-langs/az/ \
-    && python3.6 link_lang_spacy.py be ./spacy-langs/be/ \
-    && python3.6 link_lang_spacy.py bs ./spacy-langs/bs/ \
-    && python3.6 link_lang_spacy.py ky ./spacy-langs/ky/ \
-    && python3.6 link_lang_spacy.py mk ./spacy-langs/mk/ \
-    && python3.6 link_lang_spacy.py uz ./spacy-langs/uz/
+#RUN git clone --branch master --depth 1 --single-branch \
+#    https://github.com/bothub-it/spacy-lang-models \
+#    spacy-langs \
+#    && python3.6 link_lang_spacy.py pt_br ./spacy-langs/pt_br/ \
+#    && python3.6 link_lang_spacy.py mn ./spacy-langs/mn/ \
+#    && python3.6 link_lang_spacy.py ha ./spacy-langs/ha/ \
+#    && python3.6 link_lang_spacy.py ka ./spacy-langs/ka/ \
+#    && python3.6 link_lang_spacy.py kk ./spacy-langs/kk/ \
+#    && python3.6 link_lang_spacy.py sw ./spacy-langs/sw/ \
+#    && python3.6 link_lang_spacy.py az ./spacy-langs/az/ \
+#    && python3.6 link_lang_spacy.py be ./spacy-langs/be/ \
+#    && python3.6 link_lang_spacy.py bs ./spacy-langs/bs/ \
+#    && python3.6 link_lang_spacy.py ky ./spacy-langs/ky/ \
+#    && python3.6 link_lang_spacy.py mk ./spacy-langs/mk/ \
+#    && python3.6 link_lang_spacy.py uz ./spacy-langs/uz/
 
-ARG DOWNLOAD_SPACY_MODELS
+ARG DOWNLOAD_MODELS
 
-RUN if [ ${DOWNLOAD_SPACY_MODELS} ]; then \
-    python3.6 download_spacy_models.py ${DOWNLOAD_SPACY_MODELS}; \
-fi
+RUN if [ ${DOWNLOAD_MODELS} ]; then \
+        python3.6 scripts/download_models.py ${DOWNLOAD_MODELS}; \
+    fi
 
 ENTRYPOINT ["python3.6", "bothub_nlp_ai_platform/trainer/train.py"]
