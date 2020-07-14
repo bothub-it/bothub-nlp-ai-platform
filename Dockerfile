@@ -111,7 +111,7 @@ COPY . .
 ARG DOWNLOAD_MODELS
 
 RUN if [ ${DOWNLOAD_MODELS} ]; then \
-        python3.6 scripts/download_models.py ${DOWNLOAD_MODELS}; \
+        python3.6 download_models.py ${DOWNLOAD_MODELS}; \
     fi
 
 ENTRYPOINT ["python3.6", "bothub_nlp_ai_platform/trainer/train.py"]
