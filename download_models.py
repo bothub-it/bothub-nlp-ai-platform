@@ -4,6 +4,7 @@ import sys
 import subprocess
 import logging
 import plac
+import requests
 
 from decouple import config
 from spacy.cli import download
