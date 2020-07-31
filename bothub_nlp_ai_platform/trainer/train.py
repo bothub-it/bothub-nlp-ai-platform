@@ -1,6 +1,7 @@
 import argparse
 from bothub_nlp_rasa_utils.train import train_update as train
-
+import os
+print(os.getcwd())
 
 if __name__ == '__main__':
     PARSER = argparse.ArgumentParser()
