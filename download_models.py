@@ -126,9 +126,8 @@ def download_file(url, file_name):
 
 def download_bert(model_name):
     os.makedirs(model_name, exist_ok=True)
-    logger.info("Downloading model to: ", os.path.join(os.getcwd(), model_name))
-    os.chdir(os.path.join(os.getcwd(), model_name))
-    logger.info("Downloaded objects: ", os.listdir())
+    logger.info("Downloading model to: " + str(os.path.join(os.getcwd(), model_name)))
+
     from_pt = from_pt_dict.get(model_name, False)
     model_url = model_download_url.get(model_name)
     config_url = model_config_url.get(model_name)
@@ -138,6 +137,9 @@ def download_bert(model_name):
     download_file(model_url, os.path.join(model_name, model_file_name))
     download_file(config_url, os.path.join(model_name, "config.json"))
     logger.info("finished downloading bert")
+
+    os.chdir(os.path.join(os.getcwd(), model_name))
+    logger.info("Downloaded objects: " + str(os.listdir()))
 
 
 def cast_supported_languages(languages):
