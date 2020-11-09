@@ -127,7 +127,8 @@ def download_file(url, file_name):
 def download_bert(model_name):
     os.makedirs(model_name, exist_ok=True)
     logger.info("Downloading model to: ", os.path.join(os.getcwd(), model_name))
-
+    os.chdir(os.path.join(os.getcwd(), model_name))
+    logger.info("Downloaded objects: ", os.listdir())
     from_pt = from_pt_dict.get(model_name, False)
     model_url = model_download_url.get(model_name)
     config_url = model_config_url.get(model_name)
