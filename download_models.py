@@ -108,7 +108,10 @@ lang_to_model = {
     "kk": {
         "SPACY": "pip+kk_bothub_sm:https://s3.amazonaws.com/bothub-models/spacy-2.1.9/kk_bothub_sm-1.0.0.zip"
     },
-    "xx": {"SPACY": "xx"},
+    "xx": {
+        "SPACY": "xx",
+        "BERT": "bert_multilang"
+    },
 }
 
 
@@ -121,18 +124,22 @@ def download_file(url, file_name):
     return file_name
 
 
-def download_bert(model_name, model_dir):
-    os.makedirs(model_dir, exist_ok=True)
+def download_bert(model_name):
+    os.makedirs(model_name, exist_ok=True)
+    logger.info("Downloading model to: " + str(os.path.join(os.getcwd(), model_name)))
 
     from_pt = from_pt_dict.get(model_name, False)
     model_url = model_download_url.get(model_name)
     config_url = model_config_url.get(model_name)
-    
+
     logger.info("downloading bert")
-    model_name = "pytorch_model.bin" if from_pt else "tf_model.h5"
-    download_file(model_url, os.path.join(model_dir, model_name))
-    download_file(config_url, os.path.join(model_dir, "config.json"))
+    model_file_name = "pytorch_model.bin" if from_pt else "tf_model.h5"
+    download_file(model_url, os.path.join(model_name, model_file_name))
+    download_file(config_url, os.path.join(model_name, "config.json"))
     logger.info("finished downloading bert")
+
+    os.chdir(os.path.join(os.getcwd(), model_name))
+    logger.info("Downloaded objects: " + str(os.listdir()))
 
 
 def cast_supported_languages(languages):
@@ -191,7 +198,7 @@ def download_models(languages=None, debug=False):
                 logger.debug("downloading {}".format(value))
                 download(value)
         elif model == "BERT":
-            download_bert(value, model_dir="model")
+            download_bert(value)
 
 
 if __name__ == "__main__":

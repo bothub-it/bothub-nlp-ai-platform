@@ -90,9 +90,6 @@ COPY --from=builder /wheels /wheels
 
 RUN pip3 install --find-links=/wheels -r requirements.txt
 
-#Install torch with cuda 10.1
-RUN pip3 install torch==1.5.1+cu101 torchvision==0.6.1+cu101 -f https://download.pytorch.org/whl/torch_stable.html
-
 COPY . .
 
 #RUN git clone --branch master --depth 1 --single-branch \
@@ -112,8 +109,11 @@ COPY . .
 #    && python3.6 link_lang_spacy.py uz ./spacy-langs/uz/
 
 ARG DOWNLOAD_MODELS
-
-RUN if [ ${DOWNLOAD_MODELS} ]; then \
+#Install torch with cuda 10.1
+RUN if [ "${DOWNLOAD_MODELS}" = "pt_br-BERT" ]; then \
+        pip3 install torch==1.6.0+cu101 torchvision==0.7.0+cu101 -f https://download.pytorch.org/whl/torch_stable.html && \
+        python3.6 download_models.py ${DOWNLOAD_MODELS}; \
+    elif [ ${DOWNLOAD_MODELS} ]; then \
         python3.6 download_models.py ${DOWNLOAD_MODELS}; \
     fi
 
