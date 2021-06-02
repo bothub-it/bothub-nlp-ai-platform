@@ -4,7 +4,7 @@ git+https://github.com/bothub-it/bothub-nlp-rasa-utils.git@1.1.32
 plac==0.9.6
 spacy==2.1.9
 Unidecode==1.1.1
-urllib3==1.24.3
+urllib3==1.26.5
 tensorflow-gpu==2.1.2
 requests==2.23.0
 pymorphy2==0.8
